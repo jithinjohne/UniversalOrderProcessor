@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2020
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Receiver", "Receiver", "{43334A05-EBF1-482A-8919-13CBC365D744}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Receiver", "Receiver\Receiver\Receiver.csproj", "{0223D293-080B-44DC-8C6A-8C3D4B54802B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IncomingTransaltor", "IncomingTransaltor", "{0B585A5A-12E8-4201-A68F-E9D4EE3202AE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IncomingTransaltor", "IncomingTransaltor\IncomingTransaltor\IncomingTransaltor.csproj", "{B6D6A15C-7F23-44A2-99AA-E67A6099A694}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{FCDF367C-8EC9-44CF-97FE-7C0BDFEE7CCC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0223D293-080B-44DC-8C6A-8C3D4B54802B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0223D293-080B-44DC-8C6A-8C3D4B54802B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0223D293-080B-44DC-8C6A-8C3D4B54802B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0223D293-080B-44DC-8C6A-8C3D4B54802B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6D6A15C-7F23-44A2-99AA-E67A6099A694}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6D6A15C-7F23-44A2-99AA-E67A6099A694}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6D6A15C-7F23-44A2-99AA-E67A6099A694}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6D6A15C-7F23-44A2-99AA-E67A6099A694}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0223D293-080B-44DC-8C6A-8C3D4B54802B} = {43334A05-EBF1-482A-8919-13CBC365D744}
+		{B6D6A15C-7F23-44A2-99AA-E67A6099A694} = {0B585A5A-12E8-4201-A68F-E9D4EE3202AE}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F606DCDD-47B3-4E2A-ABE0-86B6F5434353}
+	EndGlobalSection
+EndGlobal
