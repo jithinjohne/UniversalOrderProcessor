@@ -12,13 +12,15 @@ namespace Translator.Tests
             public readonly IPendingFiles pendingFiles;
             public IList<IForeignFormat> incomingFiles;
             public readonly ILogger logger;
-            public readonly IRepository repository;
+            public readonly IOrderRepository repository;
+            private readonly IApplicationSettings applicationSettings;
 
             public OrderTranslatorBuilder()
             {
                 pendingFiles = Mock.Of<IPendingFiles>();
                 logger = Mock.Of<ILogger>();
-                repository = Mock.Of<IRepository>();
+                repository = Mock.Of<IOrderRepository>();
+                applicationSettings = Mock.Of<IApplicationSettings>();
             }
 
             public OrderTranslatorBuilder WithPendingFilesSetup()
@@ -32,9 +34,15 @@ namespace Translator.Tests
                 return this;
             }
 
+            public OrderTranslatorBuilder WithDefaultApplicationSettings()
+            {
+                Mock.Get(applicationSettings).Setup(x => x.ParallelFileProcessLimit).Returns(10);
+                return this;
+            }
+
             public OrderTranslator Build()
             {
-                return new OrderTranslator(pendingFiles, logger, repository);
+                return new OrderTranslator(pendingFiles, logger, repository, applicationSettings);
             }
 
             public OrderTranslatorBuilder WithSecondFileFailingOnTranslation()
@@ -55,7 +63,7 @@ namespace Translator.Tests
         public void Translate_TranslatesPendingOrders()
         {
             var builder = new OrderTranslatorBuilder();
-            var translator = builder.WithPendingFilesSetup().Build();
+            var translator = builder.WithPendingFilesSetup().WithDefaultApplicationSettings().Build();
             translator.Translate();
             foreach (var file in builder.incomingFiles)
             {
@@ -67,7 +75,7 @@ namespace Translator.Tests
         public void Translate_TagsSuccessfullyTranslatedFiles()
         {
             var builder = new OrderTranslatorBuilder();
-            var translator = builder.WithPendingFilesSetup().Build();
+            var translator = builder.WithPendingFilesSetup().WithDefaultApplicationSettings().Build();
             translator.Translate();
             foreach (var file in builder.incomingFiles)
             {
@@ -79,7 +87,7 @@ namespace Translator.Tests
         public void Translate_TagsTranslationFailedFiles()
         {
             var builder = new OrderTranslatorBuilder();
-            var translator = builder.WithSecondFileFailingOnTranslation().Build();
+            var translator = builder.WithSecondFileFailingOnTranslation().WithDefaultApplicationSettings().Build();
             translator.Translate();
 
             Mock.Get(builder.incomingFiles[0]).Verify(x => x.MarkSuccessfullyTranslated(), Times.Once);
@@ -91,7 +99,7 @@ namespace Translator.Tests
         public void Translate_LogsWhenThereIsAFailure()
         {
             var builder = new OrderTranslatorBuilder();
-            var translator = builder.WithSecondFileFailingOnTranslation().Build();
+            var translator = builder.WithSecondFileFailingOnTranslation().WithDefaultApplicationSettings().Build();
             translator.Translate();
             Mock.Get(builder.logger).Verify(x => x.LogException(It.IsAny<Exception>(), It.IsAny<string>()), Times.Once);
         }

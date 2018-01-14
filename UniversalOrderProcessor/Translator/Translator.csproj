@@ -41,11 +41,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Acknowledgement.cs" />
+    <Compile Include="IApplicationSettings.cs" />
     <Compile Include="IForeignFormat.cs" />
     <Compile Include="ILogger.cs" />
     <Compile Include="INativeFormat.cs" />
     <Compile Include="IPendingFiles.cs" />
-    <Compile Include="IRepository.cs" />
+    <Compile Include="IOrderRepository.cs" />
     <Compile Include="ITranslatable.cs" />
     <Compile Include="NativeOrder.cs" />
     <Compile Include="OrderTranslator.cs" />

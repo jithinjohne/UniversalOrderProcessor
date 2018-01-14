@@ -2,7 +2,7 @@
 
 namespace Translator
 {
-    public interface IRepository
+    public interface IOrderRepository
     {
         void WriteAll(IEnumerable<INativeFormat> nativeOrders);
     }

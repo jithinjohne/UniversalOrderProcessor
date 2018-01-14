@@ -7,20 +7,23 @@ namespace Translator
 {
     public class OrderTranslator
     {
-        private readonly IRepository repository;
+        private readonly int parallelFileProcessLimit;
+        private readonly IOrderRepository repository;
         private readonly IPendingFiles pendingFiles;
         private readonly ILogger logger;
 
-        public OrderTranslator(IPendingFiles pendingFiles, ILogger logger, IRepository repository)
+        public OrderTranslator(IPendingFiles pendingFiles, ILogger logger, IOrderRepository repository, IApplicationSettings applicationSettings)
         {
             this.pendingFiles = pendingFiles;
             this.logger = logger;
             this.repository = repository;
+            this.parallelFileProcessLimit = applicationSettings.ParallelFileProcessLimit;
+
         }
 
         public void Translate()
         {
-            var incomingFiles = pendingFiles.GetAll().Take(10);
+            var incomingFiles = pendingFiles.GetAll().Take(parallelFileProcessLimit);
 
             var nativeOrders = new List<INativeFormat>();
 
