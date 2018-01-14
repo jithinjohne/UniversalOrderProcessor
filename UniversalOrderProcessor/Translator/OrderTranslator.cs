@@ -12,9 +12,17 @@
         public void Translate()
         {
             var incomingFiles = pendingFiles.GetFiles();
+            INativeOrder nativeOrder;
             foreach (var file in incomingFiles)
             {
-                file.
+                try
+                {
+                    nativeOrder = file.Translate();
+                }
+                catch (System.Exception)
+                {
+                    throw;
+                }
             }
         }
     }
