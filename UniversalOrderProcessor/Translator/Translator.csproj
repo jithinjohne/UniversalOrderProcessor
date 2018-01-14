@@ -45,6 +45,7 @@
     <Compile Include="ILogger.cs" />
     <Compile Include="INativeOrder.cs" />
     <Compile Include="IPendingFiles.cs" />
+    <Compile Include="IRepository.cs" />
     <Compile Include="ITranslatable.cs" />
     <Compile Include="NativeOrder.cs" />
     <Compile Include="OrderTranslator.cs" />

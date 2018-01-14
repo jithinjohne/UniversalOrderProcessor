@@ -4,6 +4,6 @@ namespace Translator
 {
     public interface IPendingFiles
     {
-        IList<IIncomingFile> GetFiles();
+        IEnumerable<IIncomingFile> GetAll();
     }
 }

@@ -1,34 +1,43 @@
-﻿namespace Translator
+﻿using System.Collections.Generic;
+using System.Linq;
+
+namespace Translator
 {
     public class OrderTranslator
     {
+        private readonly IRepository repository;
         private readonly IPendingFiles pendingFiles;
         private readonly ILogger logger;
 
-        public OrderTranslator(IPendingFiles pendingFiles, ILogger logger)
+        public OrderTranslator(IPendingFiles pendingFiles, ILogger logger, IRepository repository)
         {
             this.pendingFiles = pendingFiles;
             this.logger = logger;
+            this.repository = repository;
         }
 
         public void Translate()
         {
-            var incomingFiles = pendingFiles.GetFiles();
-            INativeOrder nativeOrder;
+            var incomingFiles = pendingFiles.GetAll().Take(10);
+
+            var nativeOrders = new List<INativeOrder>();
+
             foreach (var file in incomingFiles)
             {
                 try
                 {
-                    nativeOrder = file.Translate();
+                    var nativeOrder = file.Translate();
                     file.MarkSuccessfullyTranslated();
+                    nativeOrders.Add(nativeOrder);
                 }
                 catch (System.Exception ex)
                 {
                     logger.LogException(ex, $"Exception occured while trying to translate order {file.Name}");
                     file.MarkFailedOnTransaltion();
                 }
-
             }
+
+            repository.WriteAll(nativeOrders);
         }
     }
 }

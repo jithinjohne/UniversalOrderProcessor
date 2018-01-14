@@ -12,11 +12,13 @@ namespace Translator.Tests
             public readonly IPendingFiles pendingFiles;
             public IList<IIncomingFile> incomingFiles;
             public readonly ILogger logger;
+            public readonly IRepository repository;
 
             public OrderTranslatorBuilder()
             {
                 pendingFiles = Mock.Of<IPendingFiles>();
                 logger = Mock.Of<ILogger>();
+                repository = Mock.Of<IRepository>();
             }
 
             public OrderTranslatorBuilder WithPendingFilesSetup()
@@ -26,13 +28,13 @@ namespace Translator.Tests
                     Mock.Of<IIncomingFile>(),
                     Mock.Of<IIncomingFile>()
                 };
-                Mock.Get(pendingFiles).Setup(x => x.GetFiles()).Returns(incomingFiles);
+                Mock.Get(pendingFiles).Setup(x => x.GetAll()).Returns(incomingFiles);
                 return this;
             }
 
             public OrderTranslator Build()
             {
-                return new OrderTranslator(pendingFiles, logger);
+                return new OrderTranslator(pendingFiles, logger, repository);
             }
 
             public OrderTranslatorBuilder WithOneFileFailingOnTranslation()
@@ -44,7 +46,7 @@ namespace Translator.Tests
                 incomingFiles = new List<IIncomingFile>() {
                     file1, file2, file3
                 };
-                Mock.Get(pendingFiles).Setup(x => x.GetFiles()).Returns(incomingFiles);
+                Mock.Get(pendingFiles).Setup(x => x.GetAll()).Returns(incomingFiles);
                 return this;
             }
         }
@@ -89,10 +91,18 @@ namespace Translator.Tests
         public void Translate_LogsWhenThereIsAFailure()
         {
             var builder = new OrderTranslatorBuilder();
-
             var translator = builder.WithOneFileFailingOnTranslation().Build();
             translator.Translate();
             Mock.Get(builder.logger).Verify(x => x.LogException(It.IsAny<Exception>(), It.IsAny<string>()), Times.Once);
+        }
+
+        [Fact]
+        public void Translate_WritesAllTranslatedFilesToRepository()
+        {
+            var builder = new OrderTranslatorBuilder();
+            var translator = builder.WithPendingFilesSetup().Build();
+            translator.Translate();
+            Mock.Get(builder.repository).Verify(x => x.WriteAll(It.IsAny<IEnumerable<INativeOrder>>()), Times.Once);
         }
     }
 }
