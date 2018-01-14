@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace XSLTranslator
 {
-    public class XMLOrders : IFileList
+    public class XMLOrders : ITranslatable
     {
         private const string searchPattern = "*-cc.xml";
         private const string path = @"C:\Source\Projects\UniversalOrderProcessor\UniversalOrderProcessor\Tests\SampleProcessing\IncomingTranslator";
@@ -15,9 +15,10 @@ namespace XSLTranslator
             directoryInfo = new DirectoryInfo(path);
         }
 
-        public IEnumerable<FileInfo> GetOrders()
+        public void Translate()
         {
-            return directoryInfo.GetFiles(searchPattern);
+            var file = directoryInfo.GetFiles().First();
+            //Todo : Add file translate logic using XSLT
         }
     }
 }

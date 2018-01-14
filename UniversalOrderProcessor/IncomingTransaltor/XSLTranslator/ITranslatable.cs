@@ -3,8 +3,8 @@ using System.IO;
 
 namespace XSLTranslator
 {
-    public interface IFileList
+    public interface ITranslatable
     {
-        IEnumerable<FileInfo> GetOrders();
+        void Translate();
     }
 }
