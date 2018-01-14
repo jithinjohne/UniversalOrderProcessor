@@ -2,11 +2,13 @@
 {
     public class OrderTranslator
     {
-        private IPendingFiles pendingFiles;
+        private readonly IPendingFiles pendingFiles;
+        private readonly ILogger logger;
 
-        public OrderTranslator(IPendingFiles pendingFiles)
+        public OrderTranslator(IPendingFiles pendingFiles, ILogger logger)
         {
             this.pendingFiles = pendingFiles;
+            this.logger = logger;
         }
 
         public void Translate()
@@ -18,11 +20,14 @@
                 try
                 {
                     nativeOrder = file.Translate();
+                    file.MarkSuccessfullyTranslated();
                 }
-                catch (System.Exception)
+                catch (System.Exception ex)
                 {
-                    throw;
+                    logger.LogException(ex, $"Exception occured while trying to translate order {file.Name}");
+                    file.MarkFailedOnTransaltion();
                 }
+
             }
         }
     }
