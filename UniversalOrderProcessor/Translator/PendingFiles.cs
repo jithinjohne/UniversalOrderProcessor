@@ -5,7 +5,7 @@ namespace Translator
 {
     public class PendingFiles : IPendingFiles
     {
-        public IEnumerable<IIncomingFile> GetAll()
+        public IEnumerable<IForeignFormat> GetAll()
         {
             throw new NotImplementedException();
         }

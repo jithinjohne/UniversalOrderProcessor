@@ -41,9 +41,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Acknowledgement.cs" />
-    <Compile Include="IIncomingFile.cs" />
+    <Compile Include="IForeignFormat.cs" />
     <Compile Include="ILogger.cs" />
-    <Compile Include="INativeOrder.cs" />
+    <Compile Include="INativeFormat.cs" />
     <Compile Include="IPendingFiles.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="ITranslatable.cs" />

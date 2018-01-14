@@ -10,7 +10,7 @@ namespace Translator.Tests
         private class OrderTranslatorBuilder
         {
             public readonly IPendingFiles pendingFiles;
-            public IList<IIncomingFile> incomingFiles;
+            public IList<IForeignFormat> incomingFiles;
             public readonly ILogger logger;
             public readonly IRepository repository;
 
@@ -23,10 +23,10 @@ namespace Translator.Tests
 
             public OrderTranslatorBuilder WithPendingFilesSetup()
             {
-                incomingFiles = new List<IIncomingFile>() {
-                    Mock.Of<IIncomingFile>(),
-                    Mock.Of<IIncomingFile>(),
-                    Mock.Of<IIncomingFile>()
+                incomingFiles = new List<IForeignFormat>() {
+                    Mock.Of<IForeignFormat>(),
+                    Mock.Of<IForeignFormat>(),
+                    Mock.Of<IForeignFormat>()
                 };
                 Mock.Get(pendingFiles).Setup(x => x.GetAll()).Returns(incomingFiles);
                 return this;
@@ -37,13 +37,13 @@ namespace Translator.Tests
                 return new OrderTranslator(pendingFiles, logger, repository);
             }
 
-            public OrderTranslatorBuilder WithOneFileFailingOnTranslation()
+            public OrderTranslatorBuilder WithSecondFileFailingOnTranslation()
             {
-                var file1 = Mock.Of<IIncomingFile>();
-                var file2 = Mock.Of<IIncomingFile>();
+                var file1 = Mock.Of<IForeignFormat>();
+                var file2 = Mock.Of<IForeignFormat>();
                 Mock.Get(file2).Setup(x => x.Translate()).Throws<Exception>();
-                var file3 = Mock.Of<IIncomingFile>();
-                incomingFiles = new List<IIncomingFile>() {
+                var file3 = Mock.Of<IForeignFormat>();
+                incomingFiles = new List<IForeignFormat>() {
                     file1, file2, file3
                 };
                 Mock.Get(pendingFiles).Setup(x => x.GetAll()).Returns(incomingFiles);
@@ -79,7 +79,7 @@ namespace Translator.Tests
         public void Translate_TagsTranslationFailedFiles()
         {
             var builder = new OrderTranslatorBuilder();
-            var translator = builder.WithOneFileFailingOnTranslation().Build();
+            var translator = builder.WithSecondFileFailingOnTranslation().Build();
             translator.Translate();
 
             Mock.Get(builder.incomingFiles[0]).Verify(x => x.MarkSuccessfullyTranslated(), Times.Once);
@@ -91,7 +91,7 @@ namespace Translator.Tests
         public void Translate_LogsWhenThereIsAFailure()
         {
             var builder = new OrderTranslatorBuilder();
-            var translator = builder.WithOneFileFailingOnTranslation().Build();
+            var translator = builder.WithSecondFileFailingOnTranslation().Build();
             translator.Translate();
             Mock.Get(builder.logger).Verify(x => x.LogException(It.IsAny<Exception>(), It.IsAny<string>()), Times.Once);
         }
@@ -102,7 +102,7 @@ namespace Translator.Tests
             var builder = new OrderTranslatorBuilder();
             var translator = builder.WithPendingFilesSetup().Build();
             translator.Translate();
-            Mock.Get(builder.repository).Verify(x => x.WriteAll(It.IsAny<IEnumerable<INativeOrder>>()), Times.Once);
+            Mock.Get(builder.repository).Verify(x => x.WriteAll(It.IsAny<IEnumerable<INativeFormat>>()), Times.Once);
         }
     }
 }

@@ -2,6 +2,6 @@
 {
     public interface ITranslatable
     {
-        INativeOrder Translate();
+        INativeFormat Translate();
     }
 }

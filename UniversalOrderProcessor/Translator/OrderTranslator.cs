@@ -20,7 +20,7 @@ namespace Translator
         {
             var incomingFiles = pendingFiles.GetAll().Take(10);
 
-            var nativeOrders = new List<INativeOrder>();
+            var nativeOrders = new List<INativeFormat>();
 
             foreach (var file in incomingFiles)
             {

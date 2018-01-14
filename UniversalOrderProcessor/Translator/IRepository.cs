@@ -4,6 +4,6 @@ namespace Translator
 {
     public interface IRepository
     {
-        void WriteAll(IEnumerable<INativeOrder> nativeOrders);
+        void WriteAll(IEnumerable<INativeFormat> nativeOrders);
     }
 }

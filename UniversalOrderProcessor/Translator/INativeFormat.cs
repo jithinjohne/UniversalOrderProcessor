@@ -1,6 +1,6 @@
 ﻿namespace Translator
 {
-    public interface INativeOrder
+    public interface INativeFormat
     {
     }
 }

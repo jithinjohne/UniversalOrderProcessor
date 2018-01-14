@@ -1,6 +1,6 @@
 ﻿namespace Translator
 {
-    public class NativeOrder : INativeOrder
+    public class NativeOrder : INativeFormat
     {
     }
 }

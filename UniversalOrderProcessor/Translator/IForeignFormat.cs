@@ -1,6 +1,6 @@
 ﻿namespace Translator
 {
-    public interface IIncomingFile : ITranslatable
+    public interface IForeignFormat : ITranslatable
     {
         object Name { get; }
 
