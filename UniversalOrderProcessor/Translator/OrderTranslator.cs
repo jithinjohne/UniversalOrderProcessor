@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Translator
 {
@@ -22,7 +24,7 @@ namespace Translator
 
             var nativeOrders = new List<INativeFormat>();
 
-            foreach (var file in incomingFiles)
+            Parallel.ForEach(incomingFiles, file =>
             {
                 try
                 {
@@ -30,12 +32,12 @@ namespace Translator
                     file.MarkSuccessfullyTranslated();
                     nativeOrders.Add(nativeOrder);
                 }
-                catch (System.Exception ex)
+                catch (Exception ex)
                 {
                     logger.LogException(ex, $"Exception occured while trying to translate order {file.Name}");
                     file.MarkFailedOnTransaltion();
                 }
-            }
+            });
 
             repository.WriteAll(nativeOrders);
         }

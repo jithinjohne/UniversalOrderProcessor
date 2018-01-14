@@ -2,7 +2,7 @@
 {
     public interface IForeignFormat : ITranslatable
     {
-        object Name { get; }
+        string Name { get; }
 
         void MarkSuccessfullyTranslated();
         void MarkFailedOnTransaltion();
