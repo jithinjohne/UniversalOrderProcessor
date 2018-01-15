@@ -31,6 +31,12 @@ namespace Translator
         {
             var incomingFiles = pendingFiles.GetAll().Take(parallelFileProcessLimit);
 
+            if (incomingFiles.Count() == 0)
+            {
+                logger.Info("No pending files to process");
+                return;
+            }
+
             var nativeOrders = new List<INativeFormat>();
 
             Parallel.ForEach(incomingFiles, file =>
@@ -43,7 +49,7 @@ namespace Translator
                 }
                 catch (Exception ex)
                 {
-                    logger.LogFatal(ex, $"Exception occurred while trying to translate order {file.Name}");
+                    logger.Fatal(ex, $"Exception occurred while trying to translate order {file.Name}");
                     file.MarkFailedOnTransaltion();
                 }
             });

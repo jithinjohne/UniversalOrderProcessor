@@ -38,6 +38,6 @@ namespace Translator
         /// <summary>
         /// Very serious errors!
         /// </summary>
-        void LogFatal(Exception exception, string message);
+        void Fatal(Exception exception, string message);
     }
 }

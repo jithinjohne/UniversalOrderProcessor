@@ -46,7 +46,7 @@ namespace Translator
         /// </summary>
         /// <param name="exception"></param>
         /// <param name="message"></param>
-        public void LogFatal(Exception exception, string message)
+        public void Fatal(Exception exception, string message)
         {
             logger.Fatal(exception, message);
         }

@@ -102,7 +102,7 @@ namespace Translator.Tests
             var builder = new OrderTranslatorBuilder();
             var translator = builder.WithSecondFileFailingOnTranslation().WithDefaultApplicationSettings().Build();
             translator.Translate();
-            Mock.Get(builder.logger).Verify(x => x.LogFatal(It.IsAny<Exception>(), It.IsAny<string>()), Times.Once);
+            Mock.Get(builder.logger).Verify(x => x.Fatal(It.IsAny<Exception>(), It.IsAny<string>()), Times.Once);
         }
 
         [Fact]

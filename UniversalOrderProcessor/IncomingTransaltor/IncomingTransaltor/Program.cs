@@ -8,7 +8,8 @@ namespace IncomingTransaltor
         private static void Main(string[] args)
         {
             var container = DependencyRegister.RegisterDependecies();
-            container.Resolve<IOrderTranslaor>();
+            var translator = container.Resolve<IOrderTranslaor>();
+            translator.Translate();
         }
     }
 }

@@ -16,10 +16,11 @@ namespace Translator
         private readonly string errorFileLocaiton;
         private readonly string successFileLocation;
         private readonly int fileCountLimit;
+        private readonly ILogger logger;
 
         private string RandomFileName(string context) => $"{context}_{DateTime.Now.ToString("yyyyMMddHHmmssfff")}_{Guid.NewGuid().ToString("N")}";
 
-        public FileSystem(IApplicationSettings applicationSettings)
+        public FileSystem(IApplicationSettings applicationSettings, ILogger logger)
         {
             var baseFilePath = applicationSettings.BaseFilePath;
             pendingFilesLocation = Path.Combine(baseFilePath, applicationSettings.PendingFilesLocation);
@@ -28,6 +29,7 @@ namespace Translator
             successFileLocation = Path.Combine(baseFilePath, applicationSettings.SuccessFilePath);
 
             fileCountLimit = applicationSettings.PendingFilesProcessLimit;
+            this.logger = logger;
         }
 
         /// <summary>
@@ -57,7 +59,12 @@ namespace Translator
         /// <param name="filePath">The file path.</param>
         public void MarkFileAsUnknown(string filePath)
         {
-            File.Move(filePath, GetNewFileNameWithFullPath(unknownFilesLocation, filePath));
+            string destFileName = GetNewFileNameWithFullPath(unknownFilesLocation, filePath);
+            File.Move(filePath, destFileName);
+
+            logger.Warning($"Unknown file was moved");
+            logger.Warning($"Source : {filePath}");
+            logger.Warning($"Destination : {destFileName}");
         }
 
         private string GetNewFileNameWithFullPath(string filePath, string fileName) => Path.Combine(filePath, RandomFileName(GetFileNameWithExtension(fileName)));
