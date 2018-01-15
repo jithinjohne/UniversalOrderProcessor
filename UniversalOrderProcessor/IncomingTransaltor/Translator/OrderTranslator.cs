@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Translator
 {
-    public class OrderTranslator
+    public class OrderTranslator : IOrderTranslaor
     {
         private readonly int parallelFileProcessLimit;
         private readonly IOrderRepository repository;

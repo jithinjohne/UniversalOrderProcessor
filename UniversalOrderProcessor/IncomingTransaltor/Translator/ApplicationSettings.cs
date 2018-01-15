@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Translator
+﻿namespace Translator
 {
     public class ApplicationSettings : IApplicationSettings
     {
@@ -14,6 +12,8 @@ namespace Translator
 
         public string PendingFilesLocation => "Pending";
 
+        public string UnknownFilesLocation => "Unknown";
+
         public string ShipmentNamePattern => "^NAVASN.*$";
 
         public string InvoiceNamePattern => "^NAVINV.*$";
@@ -21,7 +21,5 @@ namespace Translator
         public string AcknowledgementNamePattern => "^NAVACK.*$";
 
         public string ElectronicDataNamePattern => "^NAVEDI.*$";
-
-        public string UnknownFilesLocation => "Unknown";
     }
 }
