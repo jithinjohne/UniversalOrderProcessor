@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Translator
 {
@@ -18,6 +17,7 @@ namespace Translator
             this.directory = directory;
             this.foreignFileFactory = foreignFileFactory;
         }
+
         /// <summary>
         /// Get all <see cref="IForeignFormat"/> files pending processing
         /// </summary>
@@ -28,7 +28,7 @@ namespace Translator
             var files = directory.GetFiles(pendingFilesLocation);
             foreach (var file in files)
             {
-                var foreignFile =  foreignFileFactory.CreateForeignFile(file);
+                var foreignFile = foreignFileFactory.CreateForeignFile(file);
                 foreignFiles.Add(foreignFile);
             }
             return foreignFiles;

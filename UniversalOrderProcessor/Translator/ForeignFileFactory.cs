@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Translator
 {
@@ -14,6 +10,7 @@ namespace Translator
         {
             this.file = file;
         }
+
         public IForeignFormat CreateForeignFile(string file)
         {
             throw new NotImplementedException();
