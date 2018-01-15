@@ -46,7 +46,7 @@ namespace Translator
         /// <summary>
         /// Gets the acknowledgement name <see cref="Regex"/> pattern.
         /// </summary>
-        string AcknowledgementNamePattern { get; }
+        string AcknowledgmentNamePattern { get; }
 
         /// <summary>
         /// Gets the electronic data name <see cref="Regex"/> pattern.

@@ -27,7 +27,7 @@ namespace Translator
 
             //Initialize name patterns from application settings.
             shipmentNamePattern = applicationSettings.ShipmentNamePattern;
-            acknowledgementNamePattern = applicationSettings.AcknowledgementNamePattern;
+            acknowledgementNamePattern = applicationSettings.AcknowledgmentNamePattern;
             electronicDataNamePattern = applicationSettings.ElectronicDataNamePattern;
             invoiceNamePattern = applicationSettings.InvoiceNamePattern;
         }

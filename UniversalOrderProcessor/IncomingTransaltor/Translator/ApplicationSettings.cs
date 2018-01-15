@@ -1,4 +1,6 @@
-﻿namespace Translator
+﻿using System.Configuration;
+
+namespace Translator
 {
     /// <summary>
     /// Application settings
@@ -9,51 +11,51 @@
         /// <summary>
         /// Gets the count of pending files to process at a time.
         /// </summary>
-        public int PendingFilesProcessLimit => 10;
+        public int PendingFilesProcessLimit => int.Parse(ConfigurationManager.AppSettings["PendingFilesProcessLimit"]);
 
         /// <summary>
         /// Gets the error file path.
         /// </summary>
-        public string ErrorFilePath => "Error";
+        public string ErrorFilePath => ConfigurationManager.AppSettings["ErrorFilePath"];
 
         /// <summary>
         /// Gets the success file path.
         /// </summary>
-        public string SuccessFilePath => "Success";
+        public string SuccessFilePath => ConfigurationManager.AppSettings["SuccessFilePath"];
 
         /// <summary>
         /// Gets the base file path.
         /// </summary>
-        public string BaseFilePath => @"C:\Source\Projects\UniversalOrderProcessor\UniversalOrderProcessor\Tests\SampleProcessing\IncomingTranslator";
+        public string BaseFilePath => ConfigurationManager.AppSettings["BaseFilePath"];
 
         /// <summary>
         /// Gets the pending files location.
         /// </summary>
-        public string PendingFilesLocation => "Pending";
+        public string PendingFilesLocation => ConfigurationManager.AppSettings["PendingFilesLocation"];
 
         /// <summary>
         /// Gets the unknown files location.
         /// </summary>
-        public string UnknownFilesLocation => "Unknown";
+        public string UnknownFilesLocation => ConfigurationManager.AppSettings["UnknownFilesLocation"];
 
         /// <summary>
         /// Gets the shipment name <see cref="Regex" /> pattern.
         /// </summary>
-        public string ShipmentNamePattern => "^NAVASN.*$";
+        public string ShipmentNamePattern => ConfigurationManager.AppSettings["ShipmentNamePattern"];
 
         /// <summary>
         /// Gets the invoice name <see cref="Regex" /> pattern.
         /// </summary>
-        public string InvoiceNamePattern => "^NAVINV.*$";
+        public string InvoiceNamePattern => ConfigurationManager.AppSettings["InvoiceNamePattern"];
 
         /// <summary>
-        /// Gets the acknowledgement name <see cref="Regex" /> pattern.
+        /// Gets the acknowledgment name <see cref="Regex" /> pattern.
         /// </summary>
-        public string AcknowledgementNamePattern => "^NAVACK.*$";
+        public string AcknowledgmentNamePattern => ConfigurationManager.AppSettings["AcknowledgmentNamePattern"];
 
         /// <summary>
         /// Gets the electronic data name <see cref="Regex" /> pattern.
         /// </summary>
-        public string ElectronicDataNamePattern => "^NAVEDI.*$";
+        public string ElectronicDataNamePattern => ConfigurationManager.AppSettings["ElectronicDataNamePattern"];
     }
 }

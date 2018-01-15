@@ -1,4 +1,5 @@
 ﻿using Unity;
+using Unity.Lifetime;
 
 namespace Translator
 {
@@ -17,7 +18,7 @@ namespace Translator
             container.RegisterType<IPendingFiles, PendingFiles>();
             container.RegisterType<IForeignFileFactory, ForeignFileFactory>();
             container.RegisterType<IFileSystem, FileSystem>();
-            container.RegisterType<IApplicationSettings, ApplicationSettings>();
+            container.RegisterType<IApplicationSettings, ApplicationSettings>(new ContainerControlledLifetimeManager());
             container.RegisterType<ILogger, CustomLogger>();
             container.RegisterType<INativeFormat, NativeOrder>();
             container.RegisterType<IOrderTranslaor, OrderTranslator>();
