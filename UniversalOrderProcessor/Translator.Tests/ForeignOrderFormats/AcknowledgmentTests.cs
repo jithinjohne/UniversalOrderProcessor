@@ -47,7 +47,7 @@ namespace Translator.Tests.ForeignOrderFormats
             var acknowledgmentBuilder = new AcknowledgmentBuilder();
             var acknowledgment = acknowledgmentBuilder.WithFileContent(fileContent).Build();
             var result = acknowledgment.Translate();
-            var formattedContent = new String(LoremIpsum.Take(100).);
+            var formattedContent = new String(LoremIpsum.Take(100).ToArray());
             Mock.Get(acknowledgmentBuilder.nativeFormat).Verify(x => x.PrintFrom(formattedContent), Times.Once);
         }
 
