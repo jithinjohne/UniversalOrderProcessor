@@ -5,6 +5,7 @@
         string Name { get; }
 
         void MarkSuccessfullyTranslated();
+
         void MarkFailedOnTransaltion();
     }
 }

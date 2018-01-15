@@ -41,6 +41,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Acknowledgement.cs" />
+    <Compile Include="ForeignOrderFormats\Acknowledgment.cs" />
+    <Compile Include="ForeignOrderFormats\ForeignFormat.cs" />
+    <Compile Include="ForeignOrderFormats\Invoice.cs" />
+    <Compile Include="ForeignOrderFormats\ShipmentNotice.cs" />
     <Compile Include="IApplicationSettings.cs" />
     <Compile Include="IForeignFormat.cs" />
     <Compile Include="ILogger.cs" />

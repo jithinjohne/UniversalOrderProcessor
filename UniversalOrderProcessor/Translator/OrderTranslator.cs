@@ -18,7 +18,6 @@ namespace Translator
             this.logger = logger;
             this.repository = repository;
             this.parallelFileProcessLimit = applicationSettings.ParallelFileProcessLimit;
-
         }
 
         public void Translate()
