@@ -11,9 +11,9 @@ namespace Translator.ForeignOrderFormats
         private readonly string successFilePath;
         private readonly string baseFilePath;
 
-        private string errorFileName => Path.Combine(baseFilePath, errorFilePath, RandomFileName(fileName));
-        private string successFileName => Path.Combine(baseFilePath, successFilePath, RandomFileName(fileName));
-        private string sourceFileName => Path.Combine(baseFilePath, fileName);
+        private string ErrorFileName => Path.Combine(baseFilePath, errorFilePath, RandomFileName(fileName));
+        private string SuccessFileName => Path.Combine(baseFilePath, successFilePath, RandomFileName(fileName));
+        private string SourceFileName => Path.Combine(baseFilePath, fileName);
 
         private string RandomFileName(string context) => $"{context}_{DateTime.Now.ToString("yyyyMMddHHmmssfff")}_{Guid.NewGuid().ToString("N")}";
 
@@ -28,12 +28,12 @@ namespace Translator.ForeignOrderFormats
 
         public void MarkFailedOnTransaltion()
         {
-            File.Move(sourceFileName, errorFileName);
+            File.Move(SourceFileName, ErrorFileName);
         }
 
         public void MarkSuccessfullyTranslated()
         {
-            File.Move(sourceFileName, successFileName);
+            File.Move(SourceFileName, SuccessFileName);
         }
     }
 }
