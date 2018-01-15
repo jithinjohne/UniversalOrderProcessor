@@ -1,4 +1,4 @@
-﻿namespace Translator.ForeignOrderFormats
+﻿namespace Translator
 {
     public interface IFile
     {

@@ -6,5 +6,6 @@
         string ErrorFilePath { get; }
         string SuccessFilePath { get; }
         string BaseFilePath { get; }
+        string PendingFilesLocation { get; }
     }
 }
