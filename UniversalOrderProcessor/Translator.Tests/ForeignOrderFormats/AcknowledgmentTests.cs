@@ -16,7 +16,7 @@ namespace Translator.Tests.ForeignOrderFormats
             private readonly IApplicationSettings applicationSettings;
             private readonly string fileName;
             private readonly ILogger logger;
-            private readonly IFile file;
+            private readonly IOperatingSystem file;
             public readonly INativeFormat nativeFormat;
 
             public AcknowledgmentBuilder()
@@ -24,7 +24,7 @@ namespace Translator.Tests.ForeignOrderFormats
                 applicationSettings = Mock.Of<IApplicationSettings>();
                 fileName = "TestFile";
                 logger = Mock.Of<ILogger>();
-                file = Mock.Of<IFile>();
+                file = Mock.Of<IOperatingSystem>();
                 nativeFormat = Mock.Of<INativeFormat>();
             }
 
@@ -35,7 +35,7 @@ namespace Translator.Tests.ForeignOrderFormats
 
             public AcknowledgmentBuilder WithFileContent(string fileContent)
             {
-                Mock.Get(file).Setup(x => x.Read(It.IsAny<string>())).Returns(fileContent);
+                Mock.Get(file).Setup(x => x.ReadFile(It.IsAny<string>())).Returns(fileContent);
                 return this;
             }
         }

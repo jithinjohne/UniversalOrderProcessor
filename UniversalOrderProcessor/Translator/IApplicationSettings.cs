@@ -7,5 +7,9 @@
         string SuccessFilePath { get; }
         string BaseFilePath { get; }
         string PendingFilesLocation { get; }
+        string ShipmentNamePattern { get; }
+        string InvoiceNamePattern { get; }
+        string AcknowledgementNamePattern { get; }
+        string ElectronicDataNamePattern { get; }
     }
 }

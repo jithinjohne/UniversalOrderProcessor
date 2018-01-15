@@ -26,6 +26,8 @@ namespace Translator.ForeignOrderFormats
             this.logger = logger;
         }
 
+        public string Name => fileName;
+
         public void MarkFailedOnTransaltion()
         {
             File.Move(SourceFileName, ErrorFileName);

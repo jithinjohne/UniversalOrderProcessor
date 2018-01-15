@@ -40,11 +40,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplicationSettings.cs" />
     <Compile Include="ForeignFileFactory.cs" />
     <Compile Include="ForeignOrderFormats\Acknowledgment.cs" />
+    <Compile Include="ForeignOrderFormats\ElectronicData.cs" />
     <Compile Include="ForeignOrderFormats\ForeignFormat.cs" />
+    <Compile Include="ForeignOrderFormats\Unknown.cs" />
     <Compile Include="IDirectory.cs" />
-    <Compile Include="IFile.cs" />
+    <Compile Include="IOperatingSystem.cs" />
     <Compile Include="ForeignOrderFormats\Invoice.cs" />
     <Compile Include="ForeignOrderFormats\ShipmentNotice.cs" />
     <Compile Include="IApplicationSettings.cs" />

@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using Translator.ForeignOrderFormats;
 
 namespace Translator
 {
@@ -7,15 +9,17 @@ namespace Translator
     /// </summary>
     public class PendingFiles : IPendingFiles
     {
+        private readonly IOperatingSystem operatingSystem;
         private readonly IForeignFileFactory foreignFileFactory;
         private readonly IDirectory directory;
         private readonly string pendingFilesLocation;
 
-        public PendingFiles(IApplicationSettings applicationSettings, IDirectory directory, IForeignFileFactory foreignFileFactory)
+        public PendingFiles(IApplicationSettings applicationSettings, IDirectory directory, IForeignFileFactory foreignFileFactory, IOperatingSystem operatingSystem)
         {
             pendingFilesLocation = applicationSettings.PendingFilesLocation;
             this.directory = directory;
             this.foreignFileFactory = foreignFileFactory;
+            this.operatingSystem = operatingSystem;
         }
 
         /// <summary>
@@ -25,11 +29,18 @@ namespace Translator
         public IEnumerable<IForeignFormat> GetAll()
         {
             var foreignFiles = new List<IForeignFormat>();
-            var files = directory.GetFiles(pendingFilesLocation);
+            var files = directory.GetFiles(pendingFilesLocation).Take(10);
             foreach (var file in files)
             {
                 var foreignFile = foreignFileFactory.CreateForeignFile(file);
-                foreignFiles.Add(foreignFile);
+                if (foreignFile is Unknown)
+                {
+                    operatingSystem.MarkFileAsUnknown(file);
+                }
+                else
+                {
+                    foreignFiles.Add(foreignFile);
+                }
             }
             return foreignFiles;
         }

@@ -36,7 +36,7 @@ namespace Translator
                 }
                 catch (Exception ex)
                 {
-                    logger.LogException(ex, $"Exception occured while trying to translate order {file.Name}");
+                    logger.LogException(ex, $"Exception occurred while trying to translate order {file.Name}");
                     file.MarkFailedOnTransaltion();
                 }
             });
