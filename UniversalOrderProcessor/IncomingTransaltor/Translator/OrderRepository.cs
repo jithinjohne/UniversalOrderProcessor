@@ -1,16 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Translator
 {
-    public class OrderRepository: IOrderRepository
+    /// <summary>
+    /// Order repository
+    /// </summary>
+    /// <seealso cref="Translator.IOrderRepository" />
+    public class OrderRepository : IOrderRepository
     {
+        private readonly ILogger logger;
+
+        public OrderRepository(ILogger logger)
+        {
+            this.logger = logger;
+        }
+
+        /// <summary>
+        /// Writes all native orders to the DB
+        /// </summary>
+        /// <param name="nativeOrders">The native orders.</param>
         public void WriteAll(IEnumerable<INativeFormat> nativeOrders)
         {
-
+            //To-do : Add database operations here
+            logger.Debug($"Successfully wrote {nativeOrders.Count()} to the db");
         }
     }
 }

@@ -38,7 +38,7 @@ namespace Translator
         /// <param name="message"></param>
         public void Info(string message)
         {
-            logger.Error(message);
+            logger.Info(message);
         }
 
         /// <summary>
@@ -58,7 +58,7 @@ namespace Translator
         /// <param name="message"></param>
         public void Trace(string message)
         {
-            logger.Error(message);
+            logger.Trace(message);
         }
 
         /// <summary>
@@ -68,7 +68,7 @@ namespace Translator
         /// <param name="message"></param>
         public void Warning(string message)
         {
-            logger.Error(message);
+            logger.Warn(message);
         }
     }
 }

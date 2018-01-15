@@ -5,6 +5,10 @@ using System.Threading.Tasks;
 
 namespace Translator
 {
+    /// <summary>
+    /// Translate order and write translated orders to database
+    /// </summary>
+    /// <seealso cref="Translator.IOrderTranslaor" />
     public class OrderTranslator : IOrderTranslaor
     {
         private readonly int parallelFileProcessLimit;
@@ -20,6 +24,9 @@ namespace Translator
             this.parallelFileProcessLimit = applicationSettings.PendingFilesProcessLimit;
         }
 
+        /// <summary>
+        /// Translates this instance.
+        /// </summary>
         public void Translate()
         {
             var incomingFiles = pendingFiles.GetAll().Take(parallelFileProcessLimit);
