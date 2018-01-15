@@ -5,7 +5,6 @@
         public Invoice(IApplicationSettings applicationSettings, string fileName, ILogger logger)
             : base(applicationSettings, fileName, logger)
         {
-
         }
 
         public INativeFormat Translate()

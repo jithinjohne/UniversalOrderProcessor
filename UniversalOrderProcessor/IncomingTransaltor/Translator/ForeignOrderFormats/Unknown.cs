@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Translator.ForeignOrderFormats
 {
@@ -10,8 +6,8 @@ namespace Translator.ForeignOrderFormats
     {
         public Unknown()
         {
-
         }
+
         public string Name => throw new NotImplementedException();
 
         public void MarkFailedOnTransaltion()

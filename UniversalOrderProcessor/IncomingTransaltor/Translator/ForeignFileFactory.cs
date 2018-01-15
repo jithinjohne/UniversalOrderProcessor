@@ -1,5 +1,4 @@
-﻿using System;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 using Translator.ForeignOrderFormats;
 
 namespace Translator
@@ -54,8 +53,11 @@ namespace Translator
         }
 
         private bool AcknowledgmentFile(string fileName) => Match(acknowledgementNamePattern, fileName);
+
         private bool ShipmentFile(string fileName) => Match(shipmentNamePattern, fileName);
+
         private bool ElectronicData(string fileName) => Match(electronicDataNamePattern, fileName);
+
         private bool Invoice(string fileName) => Match(invoiceNamePattern, fileName);
 
         private bool Match(string pattern, string fileName)
@@ -64,7 +66,5 @@ namespace Translator
             var match = regex.Match(fileName);
             return match.Success;
         }
-
-
     }
 }
