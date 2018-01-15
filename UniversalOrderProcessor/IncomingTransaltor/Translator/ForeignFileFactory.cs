@@ -3,6 +3,10 @@ using Translator.ForeignOrderFormats;
 
 namespace Translator
 {
+    /// <summary>
+    /// Foreign file generator
+    /// </summary>
+    /// <seealso cref="Translator.IForeignFileFactory" />
     public class ForeignFileFactory : IForeignFileFactory
     {
         private readonly INativeFormat nativeFormat;
@@ -28,6 +32,11 @@ namespace Translator
             invoiceNamePattern = applicationSettings.InvoiceNamePattern;
         }
 
+        /// <summary>
+        /// Creates the foreign file.
+        /// </summary>
+        /// <param name="filePath">The file path.</param>
+        /// <returns></returns>
         public IForeignFormat CreateForeignFile(string filePath)
         {
             var fileName = fileSystem.GetFileNameWithExtension(filePath);

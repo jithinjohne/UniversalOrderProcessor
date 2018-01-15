@@ -32,7 +32,7 @@ namespace Translator.Tests.ForeignOrderFormats
 
             public AcknowledgmentBuilder WithFileContent(string fileContent)
             {
-                Mock.Get(file).Setup(x => x.ReadFile(It.IsAny<string>())).Returns(fileContent);
+                Mock.Get(file).Setup(x => x.ReadFileContent(It.IsAny<string>())).Returns(fileContent);
                 return this;
             }
         }
@@ -45,7 +45,7 @@ namespace Translator.Tests.ForeignOrderFormats
             var acknowledgment = acknowledgmentBuilder.WithFileContent(fileContent).Build();
             var result = acknowledgment.Translate();
             var formattedContent = new String(LoremIpsum.Take(100).ToArray());
-            Mock.Get(acknowledgmentBuilder.nativeFormat).Verify(x => x.PrintFrom(formattedContent), Times.Once);
+            Mock.Get(acknowledgmentBuilder.nativeFormat).Verify(x => x.LoadContentFrom(formattedContent), Times.Once);
         }
 
         private string LoremIpsum => $"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ut blandit ante, in efficitur sapien. Maecenas ut nunc ut nisl volutpat placerat nec vitae ante. Phasellus posuere egestas lacus in rutrum. Nunc malesuada ac augue sed posuere. Aenean eu eros eget nibh efficitur vestibulum fermentum ut lectus. Praesent pulvinar massa nec felis posuere lobortis. Mauris iaculis nibh sit amet erat condimentum varius. Integer vitae pellentesque risus. Aliquam auctor odio vitae lacinia aliquam.";

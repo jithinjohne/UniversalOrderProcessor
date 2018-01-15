@@ -1,8 +1,11 @@
 ﻿namespace Translator
 {
+    /// <summary>
+    /// Native format file
+    /// </summary>
     public interface INativeFormat
     {
-        INativeFormat PrintFrom(string fileContent);
+        void LoadContentFrom(string fileContent);
 
         string FileContent();
     }

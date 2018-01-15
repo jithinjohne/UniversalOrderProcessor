@@ -2,8 +2,15 @@
 
 namespace Translator
 {
+    /// <summary>
+    /// Factory to generate <see cref="IForeignFormat"> files
+    /// </summary>
     public interface IForeignFileFactory
     {
-        IForeignFormat CreateForeignFile(string file);
+        /// <summary>
+        /// Creates the foreign file.
+        /// </summary>
+        /// <param name="fileFullPath">The file full path.</param>
+        IForeignFormat CreateForeignFile(string fileFullPath);
     }
 }

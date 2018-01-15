@@ -18,7 +18,8 @@ namespace Translator.ForeignOrderFormats
 
         public INativeFormat Translate()
         {
-            return nativeFormat.PrintFrom(Format(fileSystem.ReadFile(fileName)));
+            nativeFormat.LoadContentFrom(Format(fileSystem.ReadFileContent(fileName)));
+            return nativeFormat;
         }
 
         private string Format(string fileContent)

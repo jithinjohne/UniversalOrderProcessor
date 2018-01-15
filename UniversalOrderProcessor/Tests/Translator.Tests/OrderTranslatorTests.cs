@@ -37,7 +37,7 @@ namespace Translator.Tests
 
             public OrderTranslatorBuilder WithDefaultApplicationSettings()
             {
-                Mock.Get(applicationSettings).Setup(x => x.ParallelFileProcessLimit).Returns(10);
+                Mock.Get(applicationSettings).Setup(x => x.PendingFilesProcessLimit).Returns(10);
                 return this;
             }
 
@@ -102,7 +102,7 @@ namespace Translator.Tests
             var builder = new OrderTranslatorBuilder();
             var translator = builder.WithSecondFileFailingOnTranslation().WithDefaultApplicationSettings().Build();
             translator.Translate();
-            Mock.Get(builder.logger).Verify(x => x.LogException(It.IsAny<Exception>(), It.IsAny<string>()), Times.Once);
+            Mock.Get(builder.logger).Verify(x => x.LogFatal(It.IsAny<Exception>(), It.IsAny<string>()), Times.Once);
         }
 
         [Fact]

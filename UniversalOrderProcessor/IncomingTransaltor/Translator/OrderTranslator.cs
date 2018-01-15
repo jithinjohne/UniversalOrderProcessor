@@ -17,7 +17,7 @@ namespace Translator
             this.pendingFiles = pendingFiles;
             this.logger = logger;
             this.repository = repository;
-            this.parallelFileProcessLimit = applicationSettings.ParallelFileProcessLimit;
+            this.parallelFileProcessLimit = applicationSettings.PendingFilesProcessLimit;
         }
 
         public void Translate()
@@ -36,7 +36,7 @@ namespace Translator
                 }
                 catch (Exception ex)
                 {
-                    logger.LogException(ex, $"Exception occurred while trying to translate order {file.Name}");
+                    logger.LogFatal(ex, $"Exception occurred while trying to translate order {file.Name}");
                     file.MarkFailedOnTransaltion();
                 }
             });

@@ -2,15 +2,47 @@
 
 namespace Translator
 {
+    /// <summary>
+    /// File and directory operation capabilities
+    /// </summary>
     public interface IFileSystem
     {
-        string ReadFile(string fileName);
 
-        string GetFileNameWithExtension(string filePath);
+        /// <summary>
+        /// Reads the content of the file.
+        /// </summary>
+        /// <param name="fullFilePath">The full file path.</param>
+        /// <returns>File content as string</returns>
+        string ReadFileContent(string fullFilePath);
 
-        void MarkFileAsUnknown(string file);
+        /// <summary>
+        /// Gets the file name with extension.
+        /// </summary>
+        /// <param name="fullFilePath">The full file path.</param>
+        string GetFileNameWithExtension(string fullFilePath);
+
+        /// <summary>
+        /// Marks the file as unknown.
+        /// </summary>
+        /// <param name="fullFilePath">The full file path.</param>
+        void MarkFileAsUnknown(string fullFilePath);
+
+        /// <summary>
+        /// Gets the pending files.
+        /// </summary>
+        /// <returns>A collection of full file paths</returns>
         IEnumerable<string> GetPendingFiles();
-        void MarkAsFailedOnTransaltion(string fileName);
-        void MarkAsSuccessfullyTranslated(string fileName);
+
+        /// <summary>
+        /// Marks the file as failed on translation.
+        /// </summary>
+        /// <param name="fullFilePath">The full file path.</param>
+        void MarkFileAsFailedOnTranslation(string fullFilePath);
+
+        /// <summary>
+        /// Marks the file as successfully translated.
+        /// </summary>
+        /// <param name="fullFilePath">The full file path.</param>
+        void MarkFileAsSuccessfullyTranslated(string fullFilePath);
     }
 }

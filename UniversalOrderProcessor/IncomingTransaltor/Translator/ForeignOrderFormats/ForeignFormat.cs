@@ -5,25 +5,25 @@ namespace Translator.ForeignOrderFormats
 {
     public abstract class ForeignFormat
     {
-        private readonly string fileName;
+        private readonly string fullFilePath;
         private readonly IFileSystem fileSystem;
 
-        protected ForeignFormat(string fileName, IFileSystem fileSystem)
+        protected ForeignFormat(string fullFilePath, IFileSystem fileSystem)
         {
             this.fileSystem = fileSystem;
-            this.fileName = fileName;
+            this.fullFilePath = fullFilePath;
         }
 
-        public string Name => fileName;
+        public string Name => fileSystem.GetFileNameWithExtension(fullFilePath);
 
         public void MarkFailedOnTransaltion()
         {
-            fileSystem.MarkAsFailedOnTransaltion(fileName);
+            fileSystem.MarkFileAsFailedOnTranslation(fullFilePath);
         }
 
         public void MarkSuccessfullyTranslated()
         {
-            fileSystem.MarkAsSuccessfullyTranslated(fileName);
+            fileSystem.MarkFileAsSuccessfullyTranslated(fullFilePath);
         }
     }
 }

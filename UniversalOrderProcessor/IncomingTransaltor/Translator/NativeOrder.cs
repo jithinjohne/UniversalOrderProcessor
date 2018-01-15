@@ -2,14 +2,18 @@
 {
     public class NativeOrder : INativeFormat
     {
+        private const string Header = "<header>ABC corp</header>";
+        private const string Footer = "<footer>summary</footer>";
+        private string fileContent;
+
         public string FileContent()
         {
-            throw new System.NotImplementedException();
+            return $"{Header}{fileContent}{Footer}";
         }
 
-        public INativeFormat PrintFrom(string fileContent)
+        public void LoadContentFrom(string fileContent)
         {
-            throw new System.NotImplementedException();
+            this.fileContent = fileContent;
         }
     }
 }
