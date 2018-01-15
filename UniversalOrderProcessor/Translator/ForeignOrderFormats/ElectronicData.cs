@@ -13,7 +13,6 @@ namespace Translator.ForeignOrderFormats
         {
 
         }
-        public string Name => throw new NotImplementedException();
 
         public INativeFormat Translate()
         {

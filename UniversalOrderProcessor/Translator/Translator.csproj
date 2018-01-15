@@ -47,7 +47,7 @@
     <Compile Include="ForeignOrderFormats\ForeignFormat.cs" />
     <Compile Include="ForeignOrderFormats\Unknown.cs" />
     <Compile Include="IDirectory.cs" />
-    <Compile Include="IOperatingSystem.cs" />
+    <Compile Include="IFileSystem.cs" />
     <Compile Include="ForeignOrderFormats\Invoice.cs" />
     <Compile Include="ForeignOrderFormats\ShipmentNotice.cs" />
     <Compile Include="IApplicationSettings.cs" />

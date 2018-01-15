@@ -8,14 +8,14 @@ namespace Translator
     {
         private readonly INativeFormat nativeFormat;
         private readonly ILogger logger;
-        private readonly IOperatingSystem file;
+        private readonly IFileSystem file;
         private readonly IApplicationSettings applicationSettings;
         private readonly string shipmentNamePattern;
         private readonly string acknowledgementNamePattern;
         private readonly string electronicDataNamePattern;
         private readonly string invoiceNamePattern;
 
-        public ForeignFileFactory(IOperatingSystem file, IApplicationSettings applicationSettings, ILogger logger, INativeFormat nativeFormat)
+        public ForeignFileFactory(IFileSystem file, IApplicationSettings applicationSettings, ILogger logger, INativeFormat nativeFormat)
         {
             this.file = file;
             this.applicationSettings = applicationSettings;

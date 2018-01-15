@@ -5,10 +5,10 @@ namespace Translator.ForeignOrderFormats
     public class Acknowledgment : ForeignFormat, IForeignFormat
     {
         private readonly INativeFormat nativeFormat;
-        private readonly IOperatingSystem file;
+        private readonly IFileSystem file;
         private readonly string fileName;
 
-        public Acknowledgment(IApplicationSettings applicationSettings, string fileName, ILogger logger, IOperatingSystem file, INativeFormat nativeFormat)
+        public Acknowledgment(IApplicationSettings applicationSettings, string fileName, ILogger logger, IFileSystem file, INativeFormat nativeFormat)
             : base(applicationSettings, fileName, logger)
         {
             this.fileName = fileName;

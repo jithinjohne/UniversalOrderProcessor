@@ -1,6 +1,6 @@
 ﻿namespace Translator
 {
-    public interface IOperatingSystem
+    public interface IFileSystem
     {
         string ReadFile(string fileName);
         string GetFileNameWithExtension(string filePath);

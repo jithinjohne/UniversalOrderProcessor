@@ -9,17 +9,17 @@ namespace Translator
     /// </summary>
     public class PendingFiles : IPendingFiles
     {
-        private readonly IOperatingSystem operatingSystem;
+        private readonly IFileSystem fileSystem;
         private readonly IForeignFileFactory foreignFileFactory;
         private readonly IDirectory directory;
         private readonly string pendingFilesLocation;
 
-        public PendingFiles(IApplicationSettings applicationSettings, IDirectory directory, IForeignFileFactory foreignFileFactory, IOperatingSystem operatingSystem)
+        public PendingFiles(IApplicationSettings applicationSettings, IDirectory directory, IForeignFileFactory foreignFileFactory, IFileSystem operatingSystem)
         {
             pendingFilesLocation = applicationSettings.PendingFilesLocation;
             this.directory = directory;
             this.foreignFileFactory = foreignFileFactory;
-            this.operatingSystem = operatingSystem;
+            this.fileSystem = operatingSystem;
         }
 
         /// <summary>
@@ -35,7 +35,7 @@ namespace Translator
                 var foreignFile = foreignFileFactory.CreateForeignFile(file);
                 if (foreignFile is Unknown)
                 {
-                    operatingSystem.MarkFileAsUnknown(file);
+                    fileSystem.MarkFileAsUnknown(file);
                 }
                 else
                 {
