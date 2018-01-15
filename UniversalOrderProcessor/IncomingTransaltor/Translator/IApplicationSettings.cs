@@ -11,5 +11,6 @@
         string InvoiceNamePattern { get; }
         string AcknowledgementNamePattern { get; }
         string ElectronicDataNamePattern { get; }
+        string UnknownFilesLocation { get; }
     }
 }

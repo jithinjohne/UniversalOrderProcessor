@@ -11,15 +11,11 @@ namespace Translator
     {
         private readonly IFileSystem fileSystem;
         private readonly IForeignFileFactory foreignFileFactory;
-        private readonly IDirectory directory;
-        private readonly string pendingFilesLocation;
 
-        public PendingFiles(IApplicationSettings applicationSettings, IDirectory directory, IForeignFileFactory foreignFileFactory, IFileSystem operatingSystem)
+        public PendingFiles(IForeignFileFactory foreignFileFactory, IFileSystem fileSystem)
         {
-            pendingFilesLocation = applicationSettings.PendingFilesLocation;
-            this.directory = directory;
             this.foreignFileFactory = foreignFileFactory;
-            this.fileSystem = operatingSystem;
+            this.fileSystem = fileSystem;
         }
 
         /// <summary>
@@ -29,7 +25,9 @@ namespace Translator
         public IEnumerable<IForeignFormat> GetAll()
         {
             var foreignFiles = new List<IForeignFormat>();
-            var files = directory.GetFiles(pendingFilesLocation).Take(10);
+
+            var files = fileSystem.GetPendingFiles();
+
             foreach (var file in files)
             {
                 var foreignFile = foreignFileFactory.CreateForeignFile(file);
@@ -42,6 +40,7 @@ namespace Translator
                     foreignFiles.Add(foreignFile);
                 }
             }
+
             return foreignFiles;
         }
     }

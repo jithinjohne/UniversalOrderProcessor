@@ -4,22 +4,24 @@ namespace Translator
 {
     public class ApplicationSettings : IApplicationSettings
     {
-        public int ParallelFileProcessLimit => throw new NotImplementedException();
+        public int ParallelFileProcessLimit => 10;
 
-        public string ErrorFilePath => throw new NotImplementedException();
+        public string ErrorFilePath => "Error";
 
-        public string SuccessFilePath => throw new NotImplementedException();
+        public string SuccessFilePath => "Success";
 
-        public string BaseFilePath => throw new NotImplementedException();
+        public string BaseFilePath => @"C:\Source\Projects\UniversalOrderProcessor\UniversalOrderProcessor\Tests\SampleProcessing\IncomingTranslator";
 
-        public string PendingFilesLocation => throw new NotImplementedException();
+        public string PendingFilesLocation => "Pending";
 
         public string ShipmentNamePattern => "^NAVASN.*$";
 
-        public string InvoiceNamePattern => throw new NotImplementedException();
+        public string InvoiceNamePattern => "^NAVINV.*$";
 
-        public string AcknowledgementNamePattern => throw new NotImplementedException();
+        public string AcknowledgementNamePattern => "^NAVACK.*$";
 
-        public string ElectronicDataNamePattern => throw new NotImplementedException();
+        public string ElectronicDataNamePattern => "^NAVEDI.*$";
+
+        public string UnknownFilesLocation => "Unknown";
     }
 }

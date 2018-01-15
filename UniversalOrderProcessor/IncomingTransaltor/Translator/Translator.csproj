@@ -41,23 +41,23 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationSettings.cs" />
+    <Compile Include="FileSystem.cs" />
     <Compile Include="ForeignFileFactory.cs" />
     <Compile Include="ForeignOrderFormats\Acknowledgment.cs" />
     <Compile Include="ForeignOrderFormats\ElectronicData.cs" />
     <Compile Include="ForeignOrderFormats\ForeignFormat.cs" />
     <Compile Include="ForeignOrderFormats\Unknown.cs" />
-    <Compile Include="IDirectory.cs" />
     <Compile Include="IFileSystem.cs" />
     <Compile Include="ForeignOrderFormats\Invoice.cs" />
     <Compile Include="ForeignOrderFormats\ShipmentNotice.cs" />
     <Compile Include="IApplicationSettings.cs" />
     <Compile Include="IForeignFileFactory.cs" />
-    <Compile Include="IForeignFormat.cs" />
+    <Compile Include="ForeignOrderFormats\IForeignFormat.cs" />
     <Compile Include="ILogger.cs" />
     <Compile Include="INativeFormat.cs" />
     <Compile Include="IPendingFiles.cs" />
     <Compile Include="IOrderRepository.cs" />
-    <Compile Include="ITranslatable.cs" />
+    <Compile Include="ForeignOrderFormats\ITranslatable.cs" />
     <Compile Include="NativeOrder.cs" />
     <Compile Include="OrderTranslator.cs" />
     <Compile Include="PendingFiles.cs" />

@@ -1,4 +1,4 @@
-﻿namespace Translator
+﻿namespace Translator.ForeignOrderFormats
 {
     public interface ITranslatable
     {

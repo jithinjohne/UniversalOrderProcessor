@@ -27,7 +27,7 @@ namespace Translator.Tests.ForeignOrderFormats
 
             public Acknowledgment Build()
             {
-                return new Acknowledgment(applicationSettings, fileName, logger, file, nativeFormat);
+                return new Acknowledgment(fileName, file, nativeFormat);
             }
 
             public AcknowledgmentBuilder WithFileContent(string fileContent)

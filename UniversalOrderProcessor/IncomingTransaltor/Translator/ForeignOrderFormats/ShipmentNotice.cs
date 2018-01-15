@@ -2,8 +2,8 @@
 {
     public class ShipmentNotice : ForeignFormat, IForeignFormat
     {
-        public ShipmentNotice(IApplicationSettings applicationSettings, string fileName, ILogger logger)
-            : base(applicationSettings, fileName, logger)
+        public ShipmentNotice(string fileName, IFileSystem fileSystem)
+            : base(fileName, fileSystem)
         {
         }
 

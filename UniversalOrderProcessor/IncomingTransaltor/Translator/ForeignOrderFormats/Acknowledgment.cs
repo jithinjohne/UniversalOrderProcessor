@@ -5,20 +5,20 @@ namespace Translator.ForeignOrderFormats
     public class Acknowledgment : ForeignFormat, IForeignFormat
     {
         private readonly INativeFormat nativeFormat;
-        private readonly IFileSystem file;
+        private readonly IFileSystem fileSystem;
         private readonly string fileName;
 
-        public Acknowledgment(IApplicationSettings applicationSettings, string fileName, ILogger logger, IFileSystem file, INativeFormat nativeFormat)
-            : base(applicationSettings, fileName, logger)
+        public Acknowledgment(string fileName, IFileSystem fileSystem, INativeFormat nativeFormat)
+            : base(fileName, fileSystem)
         {
             this.fileName = fileName;
-            this.file = file;
+            this.fileSystem = fileSystem;
             this.nativeFormat = nativeFormat;
         }
 
         public INativeFormat Translate()
         {
-            return nativeFormat.PrintFrom(Format(file.ReadFile(fileName)));
+            return nativeFormat.PrintFrom(Format(fileSystem.ReadFile(fileName)));
         }
 
         private string Format(string fileContent)

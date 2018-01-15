@@ -2,8 +2,8 @@
 {
     public class Invoice : ForeignFormat, IForeignFormat
     {
-        public Invoice(IApplicationSettings applicationSettings, string fileName, ILogger logger)
-            : base(applicationSettings, fileName, logger)
+        public Invoice(string fileName, IFileSystem fileSystem)
+            : base(fileName, fileSystem)
         {
         }
 

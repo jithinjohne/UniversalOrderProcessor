@@ -1,4 +1,6 @@
-﻿namespace Translator
+﻿using Translator.ForeignOrderFormats;
+
+namespace Translator
 {
     public interface IForeignFileFactory
     {

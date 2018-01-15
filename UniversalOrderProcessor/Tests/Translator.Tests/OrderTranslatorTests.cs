@@ -1,6 +1,7 @@
 ﻿using Moq;
 using System;
 using System.Collections.Generic;
+using Translator.ForeignOrderFormats;
 using Xunit;
 
 namespace Translator.Tests

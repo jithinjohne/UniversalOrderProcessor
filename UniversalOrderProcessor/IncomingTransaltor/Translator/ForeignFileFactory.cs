@@ -7,20 +7,21 @@ namespace Translator
     {
         private readonly INativeFormat nativeFormat;
         private readonly ILogger logger;
-        private readonly IFileSystem file;
+        private readonly IFileSystem fileSystem;
         private readonly IApplicationSettings applicationSettings;
         private readonly string shipmentNamePattern;
         private readonly string acknowledgementNamePattern;
         private readonly string electronicDataNamePattern;
         private readonly string invoiceNamePattern;
 
-        public ForeignFileFactory(IFileSystem file, IApplicationSettings applicationSettings, ILogger logger, INativeFormat nativeFormat)
+        public ForeignFileFactory(IFileSystem fileSystem, IApplicationSettings applicationSettings, ILogger logger, INativeFormat nativeFormat)
         {
-            this.file = file;
+            this.fileSystem = fileSystem;
             this.applicationSettings = applicationSettings;
             this.logger = logger;
             this.nativeFormat = nativeFormat;
 
+            //Initialize name patterns from application settings.
             shipmentNamePattern = applicationSettings.ShipmentNamePattern;
             acknowledgementNamePattern = applicationSettings.AcknowledgementNamePattern;
             electronicDataNamePattern = applicationSettings.ElectronicDataNamePattern;
@@ -29,22 +30,22 @@ namespace Translator
 
         public IForeignFormat CreateForeignFile(string filePath)
         {
-            var fileName = file.GetFileNameWithExtension(filePath);
+            var fileName = fileSystem.GetFileNameWithExtension(filePath);
             if (ShipmentFile(fileName))
             {
-                return new ShipmentNotice(applicationSettings, fileName, logger);
+                return new ShipmentNotice(fileName, fileSystem);
             }
             else if (AcknowledgmentFile(fileName))
             {
-                return new Acknowledgment(applicationSettings, fileName, logger, file, nativeFormat);
+                return new Acknowledgment(fileName, fileSystem, nativeFormat);
             }
             else if (ElectronicData(fileName))
             {
-                return new ElectronicData(applicationSettings, fileName, logger);
+                return new ElectronicData(fileName, fileSystem);
             }
             else if (Invoice(fileName))
             {
-                return new Invoice(applicationSettings, fileName, logger);
+                return new Invoice(fileName, fileSystem);
             }
             else
             {
