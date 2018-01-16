@@ -35,26 +35,25 @@ namespace Translator
         /// <summary>
         /// Creates the foreign file.
         /// </summary>
-        /// <param name="filePath">The file path.</param>
         /// <returns></returns>
-        public IForeignFormat CreateForeignFile(string filePath)
+        public IForeignFormat CreateForeignFile(string fullFilePath)
         {
-            var fileName = fileSystem.GetFileNameWithExtension(filePath);
+            var fileName = fileSystem.GetFileNameWithExtension(fullFilePath);
             if (ShipmentFile(fileName))
             {
-                return new ShipmentNotice(fileName, fileSystem);
+                return new ShipmentNotice(fullFilePath, fileSystem);
             }
             else if (AcknowledgmentFile(fileName))
             {
-                return new Acknowledgment(fileName, fileSystem, nativeFormat);
+                return new Acknowledgment(fullFilePath, fileSystem, nativeFormat);
             }
             else if (ElectronicData(fileName))
             {
-                return new ElectronicData(fileName, fileSystem);
+                return new ElectronicData(fullFilePath, fileSystem);
             }
             else if (Invoice(fileName))
             {
-                return new Invoice(fileName, fileSystem);
+                return new Invoice(fullFilePath, fileSystem);
             }
             else
             {
