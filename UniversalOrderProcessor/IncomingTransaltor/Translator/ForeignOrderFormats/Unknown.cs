@@ -8,7 +8,7 @@ namespace Translator.ForeignOrderFormats
         {
         }
 
-        public string Name => throw new NotImplementedException();
+        public string Name => String.Empty;
 
         public void MarkFailedOnTransaltion()
         {

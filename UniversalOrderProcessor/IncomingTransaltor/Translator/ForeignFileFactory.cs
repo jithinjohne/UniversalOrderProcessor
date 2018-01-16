@@ -33,7 +33,7 @@ namespace Translator
         }
 
         /// <summary>
-        /// Creates the foreign file.
+        /// Creates a foreign file.
         /// </summary>
         /// <returns></returns>
         public IForeignFormat CreateForeignFile(string fullFilePath)

@@ -44,7 +44,7 @@ namespace Translator
         string InvoiceNamePattern { get; }
 
         /// <summary>
-        /// Gets the acknowledgement name <see cref="Regex"/> pattern.
+        /// Gets the acknowledgment name <see cref="Regex"/> pattern.
         /// </summary>
         string AcknowledgmentNamePattern { get; }
 

@@ -9,7 +9,7 @@ namespace Translator
     public static class DependencyRegister
     {
         /// <summary>
-        /// Registers the dependecies
+        /// Registers the dependencies
         /// </summary>
         /// <returns><see cref="UnityContainer"/> with all registrations</returns>
         public static UnityContainer RegisterDependecies()

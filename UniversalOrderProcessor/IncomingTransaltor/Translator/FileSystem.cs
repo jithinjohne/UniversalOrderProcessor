@@ -77,14 +77,22 @@ namespace Translator
         public string ReadFileContent(string fileName)
         {
             var fileContent = string.Empty;
-
-            using (FileStream fs = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+            FileStream fileStream = null;
+            try
             {
-                using (StreamReader sr = new StreamReader(fs))
+                fileStream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+
+                using (StreamReader sr = new StreamReader(fileStream))
                 {
+                    fileStream = null;
                     fileContent = sr.ReadToEnd();
                     sr.Close();
                 }
+            }
+            finally
+            {
+                if (fileStream != null)
+                    fileStream.Dispose();
             }
 
             return fileContent;

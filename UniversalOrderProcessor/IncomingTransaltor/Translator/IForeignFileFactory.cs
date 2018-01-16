@@ -8,7 +8,7 @@ namespace Translator
     public interface IForeignFileFactory
     {
         /// <summary>
-        /// Creates the foreign file.
+        /// Creates a foreign file.
         /// </summary>
         /// <param name="fileFullPath">The file full path.</param>
         IForeignFormat CreateForeignFile(string fileFullPath);
