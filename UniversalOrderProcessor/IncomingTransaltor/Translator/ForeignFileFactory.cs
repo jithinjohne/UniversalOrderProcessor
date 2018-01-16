@@ -12,7 +12,6 @@ namespace Translator
         private readonly INativeFormat nativeFormat;
         private readonly ILogger logger;
         private readonly IFileSystem fileSystem;
-        private readonly IApplicationSettings applicationSettings;
         private readonly string shipmentNamePattern;
         private readonly string acknowledgementNamePattern;
         private readonly string electronicDataNamePattern;
@@ -21,7 +20,6 @@ namespace Translator
         public ForeignFileFactory(IFileSystem fileSystem, IApplicationSettings applicationSettings, ILogger logger, INativeFormat nativeFormat)
         {
             this.fileSystem = fileSystem;
-            this.applicationSettings = applicationSettings;
             this.logger = logger;
             this.nativeFormat = nativeFormat;
 
@@ -36,27 +34,32 @@ namespace Translator
         /// Creates a foreign file.
         /// </summary>
         /// <returns></returns>
-        public IForeignFormat CreateForeignFile(string fullFilePath)
+        public IForeignFormat CreateForeignFile(string fileFullPath)
         {
-            var fileName = fileSystem.GetFileNameWithExtension(fullFilePath);
+            var fileName = fileSystem.GetFileNameWithExtension(fileFullPath);
             if (ShipmentFile(fileName))
             {
-                return new ShipmentNotice(fullFilePath, fileSystem);
+                logger.Debug($"Shipment file created from {fileName}");
+                return new ShipmentNotice(fileFullPath, fileSystem);
             }
             else if (AcknowledgmentFile(fileName))
             {
-                return new Acknowledgment(fullFilePath, fileSystem, nativeFormat);
+                logger.Debug($"Acknowledgment file created from {fileName}");
+                return new Acknowledgment(fileFullPath, fileSystem, nativeFormat);
             }
             else if (ElectronicData(fileName))
             {
-                return new ElectronicData(fullFilePath, fileSystem);
+                logger.Debug($"ElectronicData file created from {fileName}");
+                return new ElectronicData(fileFullPath, fileSystem);
             }
             else if (Invoice(fileName))
             {
-                return new Invoice(fullFilePath, fileSystem);
+                logger.Debug($"Invoice file created from {fileName}");
+                return new Invoice(fileFullPath, fileSystem);
             }
             else
             {
+                logger.Debug($"Unknown file type found {fileName}");
                 return new Unknown();
             };
         }
@@ -69,7 +72,7 @@ namespace Translator
 
         private bool Invoice(string fileName) => Match(invoiceNamePattern, fileName);
 
-        private bool Match(string pattern, string fileName)
+        private static bool Match(string pattern, string fileName)
         {
             var regex = new Regex(pattern, RegexOptions.IgnoreCase);
             var match = regex.Match(fileName);

@@ -33,7 +33,7 @@ namespace Translator
         /// <summary>
         /// Error messages - most of the time these are Exceptions
         /// </summary>
-        void Exception(Exception exception, string messageText);
+        void LogError(Exception exception, string messageText);
 
         /// <summary>
         /// Very serious errors!

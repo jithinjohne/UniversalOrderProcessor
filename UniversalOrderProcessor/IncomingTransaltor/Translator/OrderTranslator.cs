@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -21,7 +22,7 @@ namespace Translator
             this.pendingFiles = pendingFiles;
             this.logger = logger;
             this.repository = repository;
-            this.parallelFileProcessLimit = applicationSettings.PendingFilesProcessLimit;
+            parallelFileProcessLimit = applicationSettings.PendingFilesProcessLimit;
         }
 
         /// <summary>
@@ -50,7 +51,7 @@ namespace Translator
                 catch (Exception ex)
                 {
                     logger.Fatal(ex, $"Exception occurred while trying to translate order {file.Name}");
-                    file.MarkFailedOnTransaltion();
+                    file.MarkFailedOnTranslation();
                 }
             });
 

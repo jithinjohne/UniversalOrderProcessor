@@ -12,7 +12,7 @@ namespace Translator
         /// Registers the dependencies
         /// </summary>
         /// <returns><see cref="UnityContainer"/> with all registrations</returns>
-        public static UnityContainer RegisterDependecies()
+        public static IUnityContainer RegisterDependencies()
         {
             var container = new UnityContainer();
             container.RegisterType<IPendingFiles, PendingFiles>();

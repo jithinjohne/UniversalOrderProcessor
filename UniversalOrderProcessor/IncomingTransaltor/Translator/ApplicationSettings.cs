@@ -1,4 +1,5 @@
 ﻿using System.Configuration;
+using System.Globalization;
 
 namespace Translator
 {
@@ -11,7 +12,7 @@ namespace Translator
         /// <summary>
         /// Gets the count of pending files to process at a time.
         /// </summary>
-        public int PendingFilesProcessLimit => int.Parse(ConfigurationManager.AppSettings["PendingFilesProcessLimit"]);
+        public int PendingFilesProcessLimit => int.Parse(ConfigurationManager.AppSettings["PendingFilesProcessLimit"], CultureInfo.InvariantCulture);
 
         /// <summary>
         /// Gets the error file path.

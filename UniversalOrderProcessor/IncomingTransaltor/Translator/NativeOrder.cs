@@ -8,7 +8,7 @@
     {
         private const string Header = "<header>ABC corp</header>";
         private const string Footer = "<footer>summary</footer>";
-        private string fileContent;
+        private string detail;
 
         /// <summary>
         /// Gets the content of the file.
@@ -18,16 +18,16 @@
         /// </returns>
         public string GetFileContent()
         {
-            return $"{Header}{fileContent}{Footer}";
+            return $"{Header}{detail}{Footer}";
         }
 
         /// <summary>
         /// Loads the content.
         /// </summary>
-        /// <param name="sourceFileContent">Content of the file.</param>
-        public void LoadContentFrom(string sourceFileContent)
+        /// <param name="fileContent">Content of the file.</param>
+        public void LoadContentFrom(string fileContent)
         {
-            fileContent = sourceFileContent;
+            detail = fileContent;
         }
     }
 }

@@ -10,7 +10,7 @@ namespace Translator.ForeignOrderFormats
 
         public string Name => String.Empty;
 
-        public void MarkFailedOnTransaltion()
+        public void MarkFailedOnTranslation()
         {
             throw new NotImplementedException();
         }

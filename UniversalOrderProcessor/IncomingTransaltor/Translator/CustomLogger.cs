@@ -27,7 +27,7 @@ namespace Translator
         /// </summary>
         /// <param name="exception"></param>
         /// <param name="messageText"></param>
-        public void Exception(Exception exception, string messageText)
+        public void LogError(Exception exception, string messageText)
         {
             logger.Error(messageText);
         }

@@ -16,7 +16,7 @@ namespace Translator.ForeignOrderFormats
 
         public string Name => fileSystem.GetFileNameWithExtension(fullFilePath);
 
-        public void MarkFailedOnTransaltion()
+        public void MarkFailedOnTranslation()
         {
             fileSystem.MarkFileAsFailedOnTranslation(fullFilePath);
         }

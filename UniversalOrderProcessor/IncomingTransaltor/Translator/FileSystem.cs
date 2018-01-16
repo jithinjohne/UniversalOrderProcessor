@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 
@@ -18,7 +19,7 @@ namespace Translator
         private readonly int fileCountLimit;
         private readonly ILogger logger;
 
-        private string RandomFileName(string context) => $"{context}_{DateTime.Now.ToString("yyyyMMddHHmmssfff")}_{Guid.NewGuid().ToString("N")}";
+        private static string RandomFileName(string context) => $"{context}_{DateTime.Now.ToString("yyyyMMddHHmmssfff", CultureInfo.InvariantCulture)}_{Guid.NewGuid().ToString("N")}";
 
         public FileSystem(IApplicationSettings applicationSettings, ILogger logger)
         {
@@ -35,11 +36,11 @@ namespace Translator
         /// <summary>
         /// Gets the file name with extension.
         /// </summary>
-        /// <param name="filePath">The file path.</param>
+        /// <param name="fullFilePath">The file path.</param>
         /// <returns></returns>
-        public string GetFileNameWithExtension(string filePath)
+        public string GetFileNameWithExtension(string fullFilePath)
         {
-            return Path.GetFileName(filePath);
+            return Path.GetFileName(fullFilePath);
         }
 
         /// <summary>
@@ -56,14 +57,14 @@ namespace Translator
         /// <summary>
         /// Marks the file as unknown.
         /// </summary>
-        /// <param name="filePath">The file path.</param>
-        public void MarkFileAsUnknown(string filePath)
+        /// <param name="fullFilePath">The file path.</param>
+        public void MarkFileAsUnknown(string fullFilePath)
         {
-            string destFileName = GetNewFileNameWithFullPath(unknownFilesLocation, filePath);
-            File.Move(filePath, destFileName);
+            string destFileName = GetNewFileNameWithFullPath(unknownFilesLocation, fullFilePath);
+            File.Move(fullFilePath, destFileName);
 
             logger.Warning($"Unknown file was moved");
-            logger.Warning($"Source : {filePath}");
+            logger.Warning($"Source : {fullFilePath}");
             logger.Warning($"Destination : {destFileName}");
         }
 
@@ -72,15 +73,15 @@ namespace Translator
         /// <summary>
         /// Reads the content of the file.
         /// </summary>
-        /// <param name="fileName">Name of the file.</param>
+        /// <param name="fullFilePath">Name of the file.</param>
         /// <returns></returns>
-        public string ReadFileContent(string fileName)
+        public string ReadFileContent(string fullFilePath)
         {
             var fileContent = string.Empty;
             FileStream fileStream = null;
             try
             {
-                fileStream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+                fileStream = new FileStream(fullFilePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
 
                 using (StreamReader sr = new StreamReader(fileStream))
                 {

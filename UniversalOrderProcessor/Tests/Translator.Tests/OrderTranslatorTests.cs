@@ -92,7 +92,7 @@ namespace Translator.Tests
             translator.Translate();
 
             Mock.Get(builder.incomingFiles[0]).Verify(x => x.MarkSuccessfullyTranslated(), Times.Once);
-            Mock.Get(builder.incomingFiles[1]).Verify(x => x.MarkFailedOnTransaltion(), Times.Once);
+            Mock.Get(builder.incomingFiles[1]).Verify(x => x.MarkFailedOnTranslation(), Times.Once);
             Mock.Get(builder.incomingFiles[2]).Verify(x => x.MarkSuccessfullyTranslated(), Times.Once);
         }
 

@@ -22,7 +22,7 @@ namespace Translator.ForeignOrderFormats
             return nativeFormat;
         }
 
-        private string Format(string fileContent)
+        private static string Format(string fileContent)
         {
             return new string(fileContent.Take(100).ToArray());
         }

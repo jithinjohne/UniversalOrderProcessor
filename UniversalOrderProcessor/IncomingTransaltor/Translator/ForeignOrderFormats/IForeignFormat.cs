@@ -6,6 +6,6 @@
 
         void MarkSuccessfullyTranslated();
 
-        void MarkFailedOnTransaltion();
+        void MarkFailedOnTranslation();
     }
 }

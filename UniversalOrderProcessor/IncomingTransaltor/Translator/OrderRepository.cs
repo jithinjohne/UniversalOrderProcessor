@@ -23,7 +23,7 @@ namespace Translator
         public void WriteAll(IEnumerable<INativeFormat> nativeOrders)
         {
             //To-do : Add database operations here
-            logger.Debug($"Successfully wrote {nativeOrders.Count()} to the db");
+            logger.Debug(string.Format($"Successfully wrote {nativeOrders.Count()} to the db"));
         }
     }
 }
