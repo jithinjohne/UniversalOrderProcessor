@@ -8,8 +8,8 @@ namespace Translator
     /// <summary>
     /// Translate order and write translated orders to database
     /// </summary>
-    /// <seealso cref="Translator.IOrderTranslaor" />
-    public class OrderTranslator : IOrderTranslaor
+    /// <seealso cref="Translator.IOrderTranslator" />
+    public class OrderTranslator : IOrderTranslator
     {
         private readonly int parallelFileProcessLimit;
         private readonly IOrderRepository repository;

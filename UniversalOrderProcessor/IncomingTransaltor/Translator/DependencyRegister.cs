@@ -21,7 +21,7 @@ namespace Translator
             container.RegisterType<IApplicationSettings, ApplicationSettings>(new ContainerControlledLifetimeManager());
             container.RegisterType<ILogger, CustomLogger>();
             container.RegisterType<INativeFormat, NativeOrder>();
-            container.RegisterType<IOrderTranslaor, OrderTranslator>();
+            container.RegisterType<IOrderTranslator, OrderTranslator>();
             container.RegisterType<IOrderRepository, OrderRepository>();
             return container;
         }

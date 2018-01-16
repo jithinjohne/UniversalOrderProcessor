@@ -24,10 +24,10 @@
         /// <summary>
         /// Loads the content.
         /// </summary>
-        /// <param name="fileContent">Content of the file.</param>
-        public void LoadContentFrom(string fileContent)
+        /// <param name="sourceFileContent">Content of the file.</param>
+        public void LoadContentFrom(string sourceFileContent)
         {
-            this.fileContent = fileContent;
+            fileContent = sourceFileContent;
         }
     }
 }

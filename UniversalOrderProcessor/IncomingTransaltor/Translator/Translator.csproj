@@ -30,6 +30,12 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>BasicKeyNoPassword.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="CommonServiceLocator, Version=2.0.2.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Unity.5.5.5\lib\net45\CommonServiceLocator.dll</HintPath>
@@ -85,7 +91,7 @@
     <Compile Include="ForeignOrderFormats\IForeignFormat.cs" />
     <Compile Include="ILogger.cs" />
     <Compile Include="INativeFormat.cs" />
-    <Compile Include="IOrderTranslaor.cs" />
+    <Compile Include="IOrderTranslator.cs" />
     <Compile Include="IPendingFiles.cs" />
     <Compile Include="IOrderRepository.cs" />
     <Compile Include="ForeignOrderFormats\ITranslatable.cs" />
@@ -97,6 +103,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="BasicKeyNoPassword.snk" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

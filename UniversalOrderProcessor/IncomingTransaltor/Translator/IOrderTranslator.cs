@@ -3,7 +3,7 @@
     /// <summary>
     /// Order translator
     /// </summary>
-    public interface IOrderTranslaor
+    public interface IOrderTranslator
     {
         /// <summary>
         /// Translates this instance.
